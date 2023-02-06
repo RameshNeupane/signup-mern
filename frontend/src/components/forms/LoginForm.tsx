@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import Info from "../icons/Info";
 import Button from "../form-inputs/Button";
@@ -9,9 +9,11 @@ import GoogleButton from "../form-inputs/GoogleButton";
 import InputPassword from "../form-inputs/InputPassword";
 
 const LoginForm = () => {
+  const navigate = useNavigate();
+
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    alert("login!");
+    navigate("/account");
   };
 
   return (
@@ -34,10 +36,18 @@ const LoginForm = () => {
         className="w-full flex flex-col gap-4"
         onSubmit={handleSubmit}
       >
-        <InputText name="username" placeholder="e.g. aaryn098" />
+        <InputText name="username" placeholder="aaryn098" />
         <InputPassword name="password" placeholder="********" />
         <div className="w-full flex flex-col gap-2">
-          <RememberMe />
+          <div className=" flex items-center justify-between">
+            <RememberMe />
+            <Link
+              to={`/verify-email`}
+              className="ml-1 border-b hover:text-cyan-600 hover:border-cyan-600"
+            >
+              Forgot password?
+            </Link>
+          </div>
           <Button label="login" />
         </div>
       </form>

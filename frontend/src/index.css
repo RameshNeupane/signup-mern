@@ -3,3 +3,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.w-otp-input {
+  @apply w-12 !important;
+}

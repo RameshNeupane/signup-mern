@@ -41,7 +41,7 @@ const InputPassword: React.FC<InputPasswordProps> = ({ name, placeholder }) => {
             className=" w-10 h-10 p-2 absolute right-1 top-1/2 -translate-y-1/2 flex items-center justify-center rounded-full dark:hover:bg-slate-700 hover:cursor-pointer"
             onClick={showHidePassword}
           >
-            {passwordType === "password" ? <Eye /> : <EyeSlash />}
+            {passwordType === "password" ? <EyeSlash /> : <Eye />}
           </div>
         )}
       </div>

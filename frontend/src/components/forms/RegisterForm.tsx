@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import Info from "../icons/Info";
 import Button from "../form-inputs/Button";
@@ -10,9 +10,11 @@ import GoogleButton from "../form-inputs/GoogleButton";
 import InputPassword from "../form-inputs/InputPassword";
 
 const RegisterForm = () => {
+  const navigate = useNavigate();
+
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    alert("registerd!");
+    navigate("/verify-otp");
   };
 
   return (
@@ -35,9 +37,9 @@ const RegisterForm = () => {
         className="w-full flex flex-col gap-4"
         onSubmit={handleSubmit}
       >
-        <InputText name="fullname" placeholder="e.g. Ramesh Neupane" />
-        <InputText name="username" placeholder="e.g. aaryn098" />
-        <InputEmail name="email" placeholder="e.g. example@gmail.com" />
+        <InputText name="fullname" placeholder="Ramesh Neupane" />
+        <InputText name="username" placeholder="aaryn098" />
+        <InputEmail name="email" placeholder="test@example.com" />
         <InputPassword name="password" placeholder="********" />
         <div className="w-full flex flex-col gap-2">
           <RememberMe />
