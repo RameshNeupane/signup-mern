@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 
-import FormLayout from "../../components/form-inputs/FormLayout";
-import RegisterForm from "../../components/forms/RegisterForm";
+import FormLayout from "@/components/forms/FormLayout";
+import RegisterForm from "@/components/forms/RegisterForm";
 
 const Register = () => {
   useEffect(() => {

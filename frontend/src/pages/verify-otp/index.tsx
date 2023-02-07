@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 
-import OTPForm from "../../components/forms/OTPForm";
-import FormLayout from "../../components/form-inputs/FormLayout";
+import OTPForm from "@/components/forms/OTPForm";
+import FormLayout from "@/components/forms/FormLayout";
 
 const VerifyOTP = () => {
   useEffect(() => {

@@ -4,8 +4,9 @@ import { Link, useNavigate } from "react-router-dom";
 import Info from "../icons/Info";
 import Button from "../form-inputs/Button";
 import InputText from "../form-inputs/InputText";
+import GoogleButton from "../buttons/GoogleButton";
 import RememberMe from "../form-inputs/RememberMe";
-import GoogleButton from "../form-inputs/GoogleButton";
+import { data } from "@/assets/data/account-detail";
 import InputPassword from "../form-inputs/InputPassword";
 
 const LoginForm = () => {
@@ -13,7 +14,7 @@ const LoginForm = () => {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    navigate("/account");
+    navigate(`/account/${data.username}`);
   };
 
   return (

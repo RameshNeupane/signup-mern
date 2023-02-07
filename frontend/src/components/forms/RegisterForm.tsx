@@ -6,7 +6,7 @@ import Button from "../form-inputs/Button";
 import InputText from "../form-inputs/InputText";
 import InputEmail from "../form-inputs/InputEmail";
 import RememberMe from "../form-inputs/RememberMe";
-import GoogleButton from "../form-inputs/GoogleButton";
+import GoogleButton from "../buttons/GoogleButton";
 import InputPassword from "../form-inputs/InputPassword";
 
 const RegisterForm = () => {

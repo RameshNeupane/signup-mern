@@ -1,7 +1,7 @@
 import React, { useState } from "react";
+import OtpInput from "react18-input-otp";
 import { useNavigate } from "react-router-dom";
 
-import OtpInput from "react18-input-otp";
 import Button from "../form-inputs/Button";
 import ArrowLeft from "../icons/ArrowLeft";
 

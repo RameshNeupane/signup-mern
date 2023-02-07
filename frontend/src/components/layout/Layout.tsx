@@ -2,7 +2,7 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 
 import GithubLink from "./GithubLink";
-import ToggleTheme from "./ToggleTheme";
+import ToggleTheme from "../buttons/ToggleTheme";
 
 const Layout = () => {
   return (
