@@ -43,7 +43,7 @@ const RegisterForm = () => {
         <InputPassword name="password" placeholder="********" />
         <div className="w-full flex flex-col gap-2">
           <RememberMe />
-          <Button label="register" />
+          <Button>Register</Button>
         </div>
       </form>
       <div className="w-full flex flex-col items-center gap-2">

@@ -37,7 +37,7 @@ const OTPForm = () => {
         errorStyle="border-red-900"
         onSubmit={handleSubmit}
       />
-      <Button label="submit" onClick={handleSubmit} />
+      <Button onClick={handleSubmit}>Submit</Button>
       <div>
         <span>Didn't get code?</span>
         <button className="ml-1 border-b hover:text-cyan-600 hover:border-cyan-600">

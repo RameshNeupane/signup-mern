@@ -1,15 +1,15 @@
 import React from "react";
 
 type ButtonProps = {
-  label: string;
   disabled?: boolean;
   onClick?: () => void;
+  children: string;
 };
 
 const Button: React.FC<ButtonProps> = ({
-  label,
   disabled = false,
   onClick,
+  children,
 }) => {
   return (
     <button
@@ -18,7 +18,7 @@ const Button: React.FC<ButtonProps> = ({
       disabled={disabled}
       className="w-full capitalize dark:bg-cyan-800 dark:hover:bg-cyan-600 text-center py-2 rounded font-medium text-b1 disabled:cursor-not-allowed"
     >
-      {label}
+      {children}
     </button>
   );
 };

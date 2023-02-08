@@ -7,6 +7,7 @@ import VerifyOTP from "./pages/verify-otp";
 import VerifyEmail from "./pages/verify-email";
 import Layout from "./components/layout/Layout";
 import UpdateAccount from "./pages/update-account";
+import ResetPassword from "./pages/reset-password";
 import ChangePassword from "./pages/change-password";
 
 const App = () => {
@@ -23,8 +24,12 @@ const App = () => {
               <Route path=":username" element={<Account />} />
               <Route path=":username/edit" element={<UpdateAccount />} />
               <Route
-                path=":username/change_password"
+                path=":username/change-password"
                 element={<ChangePassword />}
+              />
+              <Route
+                path=":username/reset-password"
+                element={<ResetPassword />}
               />
             </Route>
           </Route>

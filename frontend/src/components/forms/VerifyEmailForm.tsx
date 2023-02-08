@@ -3,6 +3,7 @@ import React, { FormEvent, useState } from "react";
 
 import Button from "../form-inputs/Button";
 import InputEmail from "../form-inputs/InputEmail";
+import { data } from "@/assets/data/account-detail";
 
 const VerifyEmailForm = () => {
   const [showInfo, setShowInfo] = useState(false);
@@ -17,10 +18,10 @@ const VerifyEmailForm = () => {
       <div className="text-center">
         <p>Password Reset link was sent to your email. Please check!!!</p>
         <Link
-          to={"/"}
+          to={`/account/${data.username}/reset-password`}
           className="ml-1 border-b hover:text-cyan-600 hover:border-cyan-600"
         >
-          Login
+          Reset Password
         </Link>
       </div>
     );
@@ -36,7 +37,7 @@ const VerifyEmailForm = () => {
           onSubmit={handleSubmit}
         >
           <InputEmail name="email" placeholder="test@example.com" />
-          <Button label="submit" />
+          <Button>Submit</Button>
         </form>
       </div>
     );

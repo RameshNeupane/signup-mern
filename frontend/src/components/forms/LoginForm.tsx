@@ -49,7 +49,7 @@ const LoginForm = () => {
               Forgot password?
             </Link>
           </div>
-          <Button label="login" />
+          <Button>Login</Button>
         </div>
       </form>
       <div className="w-full flex flex-col items-center gap-2">

@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { Link, useNavigate } from "react-router-dom";
+
 import Bars from "./icons/Bars";
 import { data } from "@/assets/data/account-detail";
 
@@ -31,24 +32,12 @@ const MenuDropdown = () => {
           <Menu.Item>
             {({ active }) => (
               <Link
-                to={`/account/${data.username}/change_password`}
+                to={`/account/${data.username}/change-password`}
                 className={`w-full p-2 border border-slate-800 rounded-md text-center text-b2 ${
                   active && "bg-slate-800"
                 }`}
               >
                 Change Password
-              </Link>
-            )}
-          </Menu.Item>
-          <Menu.Item>
-            {({ active }) => (
-              <Link
-                to={`/account/${data.username}/edit`}
-                className={`w-full p-2 border border-slate-800 rounded-md text-center text-b2 ${
-                  active && "bg-slate-800"
-                }`}
-              >
-                Update Account
               </Link>
             )}
           </Menu.Item>

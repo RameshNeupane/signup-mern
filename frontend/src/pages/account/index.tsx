@@ -2,15 +2,23 @@ import React, { useEffect } from "react";
 
 import { data } from "@/assets/data/account-detail";
 import MenuDropdown from "@/components/MenuDropdown";
+import Button from "@/components/form-inputs/Button";
+import { useNavigate } from "react-router-dom";
 
 const Account = () => {
+  const navigate = useNavigate();
+
+  const handleUpdate = () => {
+    navigate(`/account/${data.username}/edit`);
+  };
+
   useEffect(() => {
     document.title = `Account - ${data.username}`;
   }, []);
 
   return (
     <div className=" w-[800px] p-8 border-2 rounded-lg border-slate-600 dark:bg-slate-800 flex flex-col gap-4">
-      {/* header */}
+      {/* account header */}
       <div className="flex flex-row items-center justify-between px-2 border-b-2 border-b-black dark:border-b-slate-600">
         <h1 className=" text-h2 font-semibold">Account Detail</h1>
         <MenuDropdown />
@@ -29,6 +37,7 @@ const Account = () => {
               title={data.username}
             />
           </div>
+
           {/* username and fullname */}
           <div className="mb-4">
             {data?.username && (
@@ -39,15 +48,18 @@ const Account = () => {
             )}
           </div>
         </div>
+
         {/* bio */}
-        {data?.bio && (
-          <div className="flex flex-col px-4 gap-1">
-            <span className="w-max text-h6 font-medium border-b-2 border-b-black dark:border-b-slate-600">
-              Bio
-            </span>
-            <span>{data?.bio}</span>
-          </div>
-        )}
+
+        <div className="flex flex-col px-4 gap-1">
+          <span className="w-max text-h6 font-medium border-b-2 border-b-black dark:border-b-slate-600">
+            Bio
+          </span>
+          <span>{data?.bio ? data.bio : "---"}</span>
+        </div>
+
+        {/* update account button */}
+        <Button onClick={handleUpdate}>Update Account</Button>
       </div>
     </div>
   );
