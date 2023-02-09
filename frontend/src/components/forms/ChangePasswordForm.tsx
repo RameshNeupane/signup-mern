@@ -30,7 +30,7 @@ const ChangePasswordForm = () => {
       </form>
       <Link
         to={`/verify-email`}
-        className="ml-1 border-b hover:text-cyan-600 hover:border-cyan-600"
+        className="border-b hover:text-cyan-600 hover:border-cyan-600"
       >
         Forgot password?
       </Link>

@@ -19,8 +19,6 @@ export const data = {
     instagram: "https://www.instagram.com/__maailo/",
     facebook: "https://www.facebook.com/ramesh.neupane.098/",
     github: "https://github.com/RameshNeupane",
-    tiktok: "",
-    others: [],
   },
   website: "https://rameshneupane.github.io/",
 };

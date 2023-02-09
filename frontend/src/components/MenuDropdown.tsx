@@ -32,6 +32,18 @@ const MenuDropdown = () => {
           <Menu.Item>
             {({ active }) => (
               <Link
+                to={`/register`}
+                className={`w-full p-2 border border-slate-800 rounded-md text-center text-b2 ${
+                  active && "bg-slate-800"
+                }`}
+              >
+                Create New Account
+              </Link>
+            )}
+          </Menu.Item>
+          <Menu.Item>
+            {({ active }) => (
+              <Link
                 to={`/account/${data.username}/change-password`}
                 className={`w-full p-2 border border-slate-800 rounded-md text-center text-b2 ${
                   active && "bg-slate-800"
