@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import Button from "../form-inputs/Button";
+import LinkHover from "../links/LinkHover";
 import InputPassword from "../form-inputs/InputPassword";
 
 const ChangePasswordForm = () => {
@@ -28,12 +29,7 @@ const ChangePasswordForm = () => {
         <InputPassword name="confirm new password" placeholder="********" />
         <Button>Submit</Button>
       </form>
-      <Link
-        to={`/verify-email`}
-        className="border-b hover:text-cyan-600 hover:border-cyan-600"
-      >
-        Forgot password?
-      </Link>
+      <LinkHover path="/verify-email">Forgot Password?</LinkHover>
     </div>
   );
 };

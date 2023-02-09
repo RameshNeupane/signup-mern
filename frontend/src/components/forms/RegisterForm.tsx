@@ -1,8 +1,9 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import Info from "../icons/Info";
 import Button from "../form-inputs/Button";
+import LinkHover from "../links/LinkHover";
 import InputText from "../form-inputs/InputText";
 import InputEmail from "../form-inputs/InputEmail";
 import RememberMe from "../form-inputs/RememberMe";
@@ -23,13 +24,8 @@ const RegisterForm = () => {
       <div className="flex gap-1 items-center">
         <Info />
         <div>
-          <span>Already have an account?</span>
-          <Link
-            to={`/`}
-            className="ml-1 border-b hover:text-cyan-600 hover:border-cyan-600"
-          >
-            Login
-          </Link>
+          <span className="mr-1">Already have an account?</span>
+          <LinkHover path="/">Login</LinkHover>
         </div>
       </div>
       <form

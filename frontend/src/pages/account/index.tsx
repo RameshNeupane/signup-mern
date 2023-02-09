@@ -8,6 +8,7 @@ import { data } from "@/assets/data/account-detail";
 import MenuDropdown from "@/components/MenuDropdown";
 import Button from "@/components/form-inputs/Button";
 import Instagram from "@/components/icons/Instagram";
+import LinkButton from "@/components/links/LinkButton";
 
 const Account = () => {
   const navigate = useNavigate();
@@ -30,7 +31,6 @@ const Account = () => {
 
       {/* data display */}
       <div className="flex flex-col gap-4">
-        {/* image and username section */}
         <div className="flex float-row items-end justify-start gap-6 pl-6 pb-1 border-b-2 border-b-black dark:border-b-slate-600">
           {/* profile picture */}
           <div className="relative w-48 h-48 rounded-full overflow-hidden border-2 border-black dark:border-white">
@@ -42,14 +42,53 @@ const Account = () => {
             />
           </div>
 
-          {/* username and fullname */}
-          <div className="mb-4">
-            {data?.username && (
-              <h3 className="text-h3 font-medium">{data?.username}</h3>
-            )}
-            {data?.fullname && (
-              <h4 className="text-h4 font-medium">{data?.fullname}</h4>
-            )}
+          <div className="mb-4 flex flex-col gap-2">
+            {/* username and fullname */}
+            <div>
+              {data?.username && (
+                <h3 className="text-h3 font-medium">{data?.username}</h3>
+              )}
+              {data?.fullname && (
+                <h4 className="text-h4 font-medium">{data?.fullname}</h4>
+              )}
+            </div>
+
+            {/* social accounts */}
+            <div className="flex flex-row items-center gap-3">
+              {/* facebook */}
+              {data?.social_accounts?.facebook && (
+                <LinkButton
+                  href={data.social_accounts.facebook}
+                  title="Facebook"
+                >
+                  <Facebook />
+                </LinkButton>
+              )}
+
+              {/* instagram */}
+              {data?.social_accounts?.instagram && (
+                <LinkButton
+                  href={data.social_accounts.instagram}
+                  title="Instagram"
+                >
+                  <Instagram />
+                </LinkButton>
+              )}
+
+              {/* github */}
+              {data?.social_accounts?.github && (
+                <LinkButton href={data.social_accounts.github} title="Github">
+                  <Github />
+                </LinkButton>
+              )}
+
+              {/* website */}
+              {data?.website && (
+                <LinkButton href={data.website} title="Website">
+                  <Globe />
+                </LinkButton>
+              )}
+            </div>
           </div>
         </div>
 
@@ -129,80 +168,6 @@ const Account = () => {
           </span>
         </div>
 
-        {/* social accounts */}
-        <div className="flex flex-col px-4 gap-1">
-          <span className="w-max text-h6 font-medium border-b-2 border-b-black dark:border-b-slate-600">
-            Social Accounts
-          </span>
-          {data?.social_accounts?.facebook ||
-          data?.social_accounts?.instagram ||
-          data?.social_accounts?.github ? (
-            <div className="flex flex-col gap-2">
-              {/* facebook */}
-              {data?.social_accounts?.facebook && (
-                <a
-                  href={data.social_accounts.facebook}
-                  target="_blank"
-                  className="relative w-max flex items-center gap-2 hover:text-cyan-600"
-                >
-                  <span className="inline w-6 h-6">
-                    <Facebook />
-                  </span>
-                  <span>{data.social_accounts.facebook}</span>
-                </a>
-              )}
-              {/* instagram */}
-              {data?.social_accounts?.instagram && (
-                <a
-                  href={data.social_accounts.instagram}
-                  target="_blank"
-                  className="relative w-max flex items-center gap-2 hover:text-cyan-600"
-                >
-                  <span className="inline w-6 h-6">
-                    <Instagram />
-                  </span>
-                  <span>{data.social_accounts.instagram}</span>
-                </a>
-              )}
-              {/* github */}
-              {data?.social_accounts?.github && (
-                <a
-                  href={data.social_accounts.github}
-                  target="_blank"
-                  className="relative w-max flex items-center gap-2 hover:text-cyan-600"
-                >
-                  <span className="inline w-6 h-6">
-                    <Github />
-                  </span>
-                  <span>{data.social_accounts.github}</span>
-                </a>
-              )}
-            </div>
-          ) : (
-            <span>---</span>
-          )}
-        </div>
-
-        {/* portfolio website */}
-        <div className="flex flex-col px-4 gap-1">
-          <span className="w-max text-h6 font-medium border-b-2 border-b-black dark:border-b-slate-600">
-            Website
-          </span>
-          {data?.website ? (
-            <a
-              href={data.website}
-              target="_blank"
-              className="relative w-max flex items-center gap-2 hover:text-cyan-600"
-            >
-              <span className="inline w-6 h-6">
-                <Globe />
-              </span>
-              <span>{data.website}</span>
-            </a>
-          ) : (
-            <span>---</span>
-          )}
-        </div>
         {/* update account button */}
         <Button onClick={handleUpdate}>Update Account</Button>
       </div>

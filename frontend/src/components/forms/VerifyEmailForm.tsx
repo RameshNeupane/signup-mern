@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
-import React, { FormEvent, useState } from "react";
+import { FormEvent, useState } from "react";
 
 import Button from "../form-inputs/Button";
+import LinkHover from "../links/LinkHover";
 import InputEmail from "../form-inputs/InputEmail";
 import { data } from "@/assets/data/account-detail";
 
@@ -17,12 +17,9 @@ const VerifyEmailForm = () => {
     return (
       <div className="text-center">
         <p>Password Reset link was sent to your email. Please check!!!</p>
-        <Link
-          to={`/account/${data.username}/reset-password`}
-          className="ml-1 border-b hover:text-cyan-600 hover:border-cyan-600"
-        >
+        <LinkHover path={`/account/${data.username}/reset-password`}>
           Reset Password
-        </Link>
+        </LinkHover>
       </div>
     );
   } else {

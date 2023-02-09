@@ -1,8 +1,9 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import Info from "../icons/Info";
 import Button from "../form-inputs/Button";
+import LinkHover from "../links/LinkHover";
 import InputText from "../form-inputs/InputText";
 import GoogleButton from "../buttons/GoogleButton";
 import RememberMe from "../form-inputs/RememberMe";
@@ -23,13 +24,8 @@ const LoginForm = () => {
       <div className="flex gap-1 items-center">
         <Info />
         <div>
-          <span>Don't have an account?</span>
-          <Link
-            to={`/register`}
-            className="ml-1 border-b hover:text-cyan-600 hover:border-cyan-600"
-          >
-            Register
-          </Link>
+          <span className="mr-1">Don't have an account?</span>
+          <LinkHover path="/register">Register</LinkHover>
         </div>
       </div>
       <form
@@ -42,12 +38,7 @@ const LoginForm = () => {
         <div className="w-full flex flex-col gap-2">
           <div className=" flex items-center justify-between">
             <RememberMe />
-            <Link
-              to={`/verify-email`}
-              className="ml-1 border-b hover:text-cyan-600 hover:border-cyan-600"
-            >
-              Forgot password?
-            </Link>
+            <LinkHover path="/verify-email">Forgot Password?</LinkHover>
           </div>
           <Button>Login</Button>
         </div>
