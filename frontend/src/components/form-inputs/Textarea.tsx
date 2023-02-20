@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 
-type InputTextProps = {
+type TextareaProps = {
   name: string;
   value?: string;
   placeholder?: string;
 };
 
-const InputText: React.FC<InputTextProps> = ({
+const Textarea: React.FC<TextareaProps> = ({
   name,
   value = "",
   placeholder = "",
@@ -18,17 +18,16 @@ const InputText: React.FC<InputTextProps> = ({
       <label htmlFor={name} className=" capitalize">
         {name}
       </label>
-      <input
-        type="text"
-        name={name}
+      <textarea
+        rows={5}
         id={name}
         value={inputValue}
         onChange={(event) => setInputValue(event.target.value)}
-        className="dark:bg-slate-600 rounded-md h-12 outline-none border-2 border-transparent focus-within:border-white pl-2 text-base"
         placeholder={placeholder}
+        className="dark:bg-slate-600 rounded-md outline-none border-2 border-transparent focus-within:border-white pl-2 text-base"
       />
     </div>
   );
 };
 
-export default InputText;
+export default Textarea;
