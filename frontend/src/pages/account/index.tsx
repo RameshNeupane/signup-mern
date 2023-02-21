@@ -157,15 +157,7 @@ const Account = () => {
           <span className="w-max text-h6 font-medium border-b-2 border-b-black dark:border-b-slate-600">
             Skills
           </span>
-          <span>
-            {data?.skills?.length
-              ? data.skills.map((skill: string, index) => {
-                  return index !== data.skills.length - 1
-                    ? `${skill} | `
-                    : skill;
-                })
-              : "---"}
-          </span>
+          <span>{data?.skills?.length ? data.skills.join(", ") : "---"}</span>
         </div>
 
         {/* update account button */}

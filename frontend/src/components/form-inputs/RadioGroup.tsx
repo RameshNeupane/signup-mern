@@ -11,26 +11,33 @@ const RadioGroup: React.FC<RadioGroupProps> = ({ name, checked }) => {
     checked.length > 0 ? checked : "male"
   );
 
+  // console.log(radioChecked);
+
   return (
-    <div className=" w-full flex gap-4">
-      <Radio
-        name={name}
-        radioChecked={radioChecked}
-        setRadioChecked={setRadioChecked}
-        value="male"
-      />
-      <Radio
-        name={name}
-        radioChecked={radioChecked}
-        setRadioChecked={setRadioChecked}
-        value="female"
-      />
-      <Radio
-        name={name}
-        radioChecked={radioChecked}
-        setRadioChecked={setRadioChecked}
-        value="other"
-      />
+    <div className="w-full flex flex-col">
+      <span className="capitalize border-b-2 border-b-slate-600 w-max">
+        {name}
+      </span>
+      <div className=" w-full flex gap-4">
+        <Radio
+          name={name}
+          radioChecked={radioChecked}
+          setRadioChecked={setRadioChecked}
+          value="male"
+        />
+        <Radio
+          name={name}
+          radioChecked={radioChecked}
+          setRadioChecked={setRadioChecked}
+          value="female"
+        />
+        <Radio
+          name={name}
+          radioChecked={radioChecked}
+          setRadioChecked={setRadioChecked}
+          value="other"
+        />
+      </div>
     </div>
   );
 };

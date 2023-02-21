@@ -8,6 +8,9 @@ import Textarea from "../form-inputs/Textarea";
 import Radio from "../form-inputs/Radio";
 import RadioGroup from "../form-inputs/RadioGroup";
 import UpdateImage from "../form-inputs/UpdateImage";
+import SocialAccountsInput from "../form-inputs/SocialAccountsInput";
+import LocationInputs from "../form-inputs/LocationInputs";
+import UpdateDOB from "../form-inputs/UpdateDOB";
 
 const UpdateAccountForm = () => {
   const navigate = useNavigate();
@@ -48,6 +51,7 @@ const UpdateAccountForm = () => {
         <Textarea name="bio" value={data?.bio} placeholder="explain yourself" />
 
         {/* date of birth */}
+        <UpdateDOB dob={data.date_of_birth} />
 
         {/* mobile */}
         <InputText
@@ -57,7 +61,9 @@ const UpdateAccountForm = () => {
         />
         {/* gender */}
         <RadioGroup name="gender" checked={data?.gender} />
+
         {/* location */}
+        <LocationInputs location={data.address} />
 
         {/* job */}
         <InputText
@@ -65,8 +71,16 @@ const UpdateAccountForm = () => {
           value={data?.job}
           placeholder="software engineer"
         />
+
         {/* skills */}
+        <InputText
+          name="skills"
+          value={data?.skills.join(", ")}
+          placeholder="JS, React"
+        />
+
         {/* social accounts */}
+        <SocialAccountsInput accounts={data.social_accounts} />
 
         {/* website */}
         <InputText

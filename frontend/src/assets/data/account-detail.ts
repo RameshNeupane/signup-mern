@@ -8,7 +8,7 @@ export const data = {
   email: "neupaneramesh555@gmail.com",
   mobile: "9866255970",
   gender: "male",
-  date_of_birth: "02-01-1998",
+  date_of_birth: "1998-01-02",
   address: {
     country: "Nepal",
     city: "Kathmandu",
