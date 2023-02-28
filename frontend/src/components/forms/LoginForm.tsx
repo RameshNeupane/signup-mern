@@ -7,7 +7,7 @@ import LinkHover from "../links/LinkHover";
 import InputText from "../form-inputs/InputText";
 import GoogleButton from "../buttons/GoogleButton";
 import RememberMe from "../form-inputs/RememberMe";
-import { data } from "@/assets/data/account-detail";
+import { data } from "@assets/data/account-detail";
 import InputPassword from "../form-inputs/InputPassword";
 
 const LoginForm = () => {

@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import Globe from "@/components/icons/Globe";
-import Github from "@/components/icons/Github";
-import Facebook from "@/components/icons/Facebook";
-import { data } from "@/assets/data/account-detail";
-import MenuDropdown from "@/components/MenuDropdown";
-import Button from "@/components/form-inputs/Button";
-import Instagram from "@/components/icons/Instagram";
-import LinkButton from "@/components/links/LinkButton";
+import Globe from "@components/icons/Globe";
+import Github from "@components/icons/Github";
+import Facebook from "@components/icons/Facebook";
+import { data } from "@assets/data/account-detail";
+import Button from "@components/form-inputs/Button";
+import Instagram from "@components/icons/Instagram";
+import MenuDropdown from "@components/MenuDropdown";
+import LinkButton from "@components/links/LinkButton";
 
 const Account = () => {
   const navigate = useNavigate();

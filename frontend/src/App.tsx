@@ -1,14 +1,14 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import Login from "./pages/login";
-import Account from "./pages/account";
-import Register from "./pages/register";
-import VerifyOTP from "./pages/verify-otp";
-import VerifyEmail from "./pages/verify-email";
-import Layout from "./components/layout/Layout";
-import UpdateAccount from "./pages/update-account";
-import ResetPassword from "./pages/reset-password";
-import ChangePassword from "./pages/change-password";
+import Login from "@pages/login";
+import Account from "@pages/account";
+import Register from "@pages/register";
+import VerifyOTP from "@pages/verify-otp";
+import VerifyEmail from "@pages/verify-email";
+import Layout from "@components/layout/Layout";
+import ResetPassword from "@pages/reset-password";
+import UpdateAccount from "@pages/update-account";
+import ChangePassword from "@pages/change-password";
 
 const App = () => {
   return (

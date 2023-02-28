@@ -1,6 +1,6 @@
-import { data } from "@/assets/data/account-detail";
-import FormLayout from "@/components/forms/FormLayout";
-import UpdateAccountForm from "@/components/forms/UpdateAccountForm";
+import { data } from "@assets/data/account-detail";
+import FormLayout from "@components/forms/FormLayout";
+import UpdateAccountForm from "@components/forms/UpdateAccountForm";
 import React, { useEffect } from "react";
 
 const UpdateAccount = () => {

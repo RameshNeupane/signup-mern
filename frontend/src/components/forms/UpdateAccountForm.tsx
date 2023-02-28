@@ -1,16 +1,15 @@
-import React from "react";
-import { data } from "@/assets/data/account-detail";
-import Button from "@/components/form-inputs/Button";
 import { useNavigate } from "react-router-dom";
-import InputText from "../form-inputs/InputText";
-import InputEmail from "../form-inputs/InputEmail";
+
 import Textarea from "../form-inputs/Textarea";
-import Radio from "../form-inputs/Radio";
-import RadioGroup from "../form-inputs/RadioGroup";
-import UpdateImage from "../form-inputs/UpdateImage";
-import SocialAccountsInput from "../form-inputs/SocialAccountsInput";
-import LocationInputs from "../form-inputs/LocationInputs";
+import InputText from "../form-inputs/InputText";
 import UpdateDOB from "../form-inputs/UpdateDOB";
+import InputEmail from "../form-inputs/InputEmail";
+import RadioGroup from "../form-inputs/RadioGroup";
+import { data } from "@assets/data/account-detail";
+import Button from "@components/form-inputs/Button";
+import UpdateImage from "../form-inputs/UpdateImage";
+import LocationInputs from "../form-inputs/LocationInputs";
+import SocialAccountsInput from "../form-inputs/SocialAccountsInput";
 
 const UpdateAccountForm = () => {
   const navigate = useNavigate();

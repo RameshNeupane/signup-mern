@@ -3,7 +3,7 @@ import { Menu, Transition } from "@headlessui/react";
 import { Link, useNavigate } from "react-router-dom";
 
 import Bars from "./icons/Bars";
-import { data } from "@/assets/data/account-detail";
+import { data } from "@assets/data/account-detail";
 
 const MenuDropdown = () => {
   const navigate = useNavigate();

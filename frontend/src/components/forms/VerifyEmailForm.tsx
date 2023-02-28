@@ -3,7 +3,7 @@ import { FormEvent, useState } from "react";
 import Button from "../form-inputs/Button";
 import LinkHover from "../links/LinkHover";
 import InputEmail from "../form-inputs/InputEmail";
-import { data } from "@/assets/data/account-detail";
+import { data } from "@assets/data/account-detail";
 
 const VerifyEmailForm = () => {
   const [showInfo, setShowInfo] = useState(false);

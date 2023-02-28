@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 
-import FormLayout from "@/components/forms/FormLayout";
-import ResetPasswordForm from "@/components/forms/ResetPasswordForm";
+import FormLayout from "@components/forms/FormLayout";
+import ResetPasswordForm from "@components/forms/ResetPasswordForm";
 
 const ResetPassword = () => {
   useEffect(() => {

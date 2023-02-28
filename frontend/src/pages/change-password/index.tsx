@@ -1,7 +1,7 @@
 import React from "react";
 
-import FormLayout from "@/components/forms/FormLayout";
-import ChangePasswordForm from "@/components/forms/ChangePasswordForm";
+import FormLayout from "@components/forms/FormLayout";
+import ChangePasswordForm from "@components/forms/ChangePasswordForm";
 
 const ChangePassword = () => {
   return (
