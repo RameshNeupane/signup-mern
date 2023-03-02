@@ -36,10 +36,10 @@ const userController = {
     }
   },
 
-  // create a user
-  createUser: async (req: Request, res: Response) => {
+  // register a user
+  registerUser: async (req: Request, res: Response) => {
     try {
-      const hashedPassword = hashPassword(req.body.password);
+      const hashedPassword = await hashPassword(req.body.password);
       const user = new User({ ...req.body, password: hashedPassword });
       await user.save();
       res.status(201).json(user);
@@ -55,7 +55,10 @@ const userController = {
       const user = await User.findOne({ username: username as string });
 
       if (user?._id) {
-        const isMatched = comparePassword(password, user?.password as string);
+        const isMatched = await comparePassword(
+          password,
+          user?.password as string
+        );
 
         if (isMatched) {
           res.status(200).json(user);

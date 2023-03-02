@@ -1,11 +1,15 @@
 import crypto from "crypto";
+import bcrypt from "bcrypt";
 
-export const hashPassword = (plainPassword: string): string => {
-  const salt = "signup-mern";
-  const saltedPassword = salt + plainPassword;
-  const hashedPassword = crypto
-    .createHash("sha256")
-    .update(saltedPassword)
-    .digest("hex");
-  return hashedPassword;
+export const hashPassword = async (
+  plainPassword: string,
+  saltRounds = 10
+): Promise<string> => {
+  try {
+    const salt = await bcrypt.genSalt(saltRounds, "b");
+    const hashedPassword = await bcrypt.hash(plainPassword, salt);
+    return hashedPassword;
+  } catch (error: any) {
+    throw new Error(`Error hashing password: ${error.message}`);
+  }
 };
