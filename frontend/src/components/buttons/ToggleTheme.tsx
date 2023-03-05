@@ -14,7 +14,7 @@ const ToggleTheme = () => {
 
   return (
     <button
-      className=" w-10 h-10 p-2 border border-slate-600 rounded hover:bg-slate-600"
+      className=" w-10 h-10 p-2 flex items-center justify-center border border-slate-600 rounded hover:bg-slate-600"
       title="Toggle theme"
       onClick={toggleTheme}
     >

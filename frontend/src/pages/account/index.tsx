@@ -10,16 +10,37 @@ import Instagram from "@components/icons/Instagram";
 import MenuDropdown from "@components/MenuDropdown";
 import LinkButton from "@components/links/LinkButton";
 
+import { useSelector } from "react-redux";
+import { RootState } from "@redux/root-reducer";
+import { usersStateType } from "../../../src/types/user";
+
 const Account = () => {
   const navigate = useNavigate();
+  const usersState = useSelector<RootState, usersStateType>(
+    (state) => state.users
+  );
 
   const handleUpdate = () => {
-    navigate(`/account/${data.username}/edit`);
+    navigate(`/account/${usersState?.data?.username}/edit`);
   };
 
   useEffect(() => {
-    document.title = `Account - ${data.username}`;
+    document.title = `Account - ${usersState?.data?.username}`;
   }, []);
+
+  useEffect(() => {
+    if (usersState.status === "idle") {
+      navigate("/");
+    }
+  }, [usersState.status, navigate]);
+
+  if (usersState.status === "loading") {
+    return <p>Loading...</p>;
+  }
+
+  if (usersState.status === "failed") {
+    return <p>{usersState.error.message}</p>;
+  }
 
   return (
     <div className=" w-[800px] p-8 mb-8 border-2 rounded-lg border-slate-600 dark:bg-slate-800 flex flex-col gap-4">
@@ -36,9 +57,9 @@ const Account = () => {
           <div className="relative w-48 h-48 rounded-full overflow-hidden border-2 border-black dark:border-white">
             <img
               src={data?.profile_picture}
-              alt={data.username}
+              alt={usersState?.data?.username}
               className="object-cover object-center w-48 h-48"
-              title={data.username}
+              title={usersState?.data?.username}
             />
           </div>
 
@@ -46,19 +67,23 @@ const Account = () => {
             {/* username and fullname */}
             <div>
               {data?.username && (
-                <h3 className="text-h3 font-medium">{data?.username}</h3>
+                <h3 className="text-h3 font-medium">
+                  {usersState?.data?.username}
+                </h3>
               )}
               {data?.fullname && (
-                <h4 className="text-h4 font-medium">{data?.fullname}</h4>
+                <h4 className="text-h4 font-medium">
+                  {usersState?.data?.fullname}
+                </h4>
               )}
             </div>
 
             {/* social accounts */}
             <div className="flex flex-row items-center gap-3">
               {/* facebook */}
-              {data?.social_accounts?.facebook && (
+              {usersState?.data?.social_accounts?.facebook && (
                 <LinkButton
-                  href={data.social_accounts.facebook}
+                  href={usersState?.data?.social_accounts.facebook}
                   title="Facebook"
                 >
                   <Facebook />
@@ -66,9 +91,9 @@ const Account = () => {
               )}
 
               {/* instagram */}
-              {data?.social_accounts?.instagram && (
+              {usersState?.data?.social_accounts?.instagram && (
                 <LinkButton
-                  href={data.social_accounts.instagram}
+                  href={usersState?.data?.social_accounts.instagram}
                   title="Instagram"
                 >
                   <Instagram />
@@ -76,15 +101,18 @@ const Account = () => {
               )}
 
               {/* github */}
-              {data?.social_accounts?.github && (
-                <LinkButton href={data.social_accounts.github} title="Github">
+              {usersState?.data?.social_accounts?.github && (
+                <LinkButton
+                  href={usersState?.data?.social_accounts.github}
+                  title="Github"
+                >
                   <Github />
                 </LinkButton>
               )}
 
               {/* website */}
-              {data?.website && (
-                <LinkButton href={data.website} title="Website">
+              {usersState?.data?.website && (
+                <LinkButton href={usersState?.data?.website} title="Website">
                   <Globe />
                 </LinkButton>
               )}
@@ -97,7 +125,7 @@ const Account = () => {
           <span className="w-max text-h6 font-medium border-b-2 border-b-black dark:border-b-slate-600">
             Bio
           </span>
-          <span>{data?.bio ? data.bio : "---"}</span>
+          <span>{usersState?.data?.bio ? usersState?.data?.bio : "---"}</span>
         </div>
 
         {/* email */}
@@ -105,7 +133,9 @@ const Account = () => {
           <span className="w-max text-h6 font-medium border-b-2 border-b-black dark:border-b-slate-600">
             Email
           </span>
-          <span>{data?.email ? data.email : "---"}</span>
+          <span>
+            {usersState?.data?.email ? usersState?.data?.email : "---"}
+          </span>
         </div>
 
         {/* mobile */}
@@ -113,7 +143,9 @@ const Account = () => {
           <span className="w-max text-h6 font-medium border-b-2 border-b-black dark:border-b-slate-600">
             Mobile
           </span>
-          <span>{data?.mobile ? data.mobile : "---"}</span>
+          <span>
+            {usersState?.data?.mobile ? usersState?.data?.mobile : "---"}
+          </span>
         </div>
 
         {/* date of birth */}
@@ -121,7 +153,13 @@ const Account = () => {
           <span className="w-max text-h6 font-medium border-b-2 border-b-black dark:border-b-slate-600">
             Date of Birth
           </span>
-          <span>{data?.date_of_birth ? data.date_of_birth : "---"}</span>
+          <span>
+            {usersState?.data?.date_of_birth
+              ? new Date(usersState?.data?.date_of_birth)
+                  .toISOString()
+                  .slice(0, 10)
+              : "---"}
+          </span>
         </div>
 
         {/* gender */}
@@ -129,7 +167,9 @@ const Account = () => {
           <span className="w-max text-h6 font-medium border-b-2 border-b-black dark:border-b-slate-600">
             Gender
           </span>
-          <span>{data?.gender ? data.gender : "---"}</span>
+          <span>
+            {usersState?.data?.gender ? usersState?.data?.gender : "---"}
+          </span>
         </div>
 
         {/* location */}
@@ -138,8 +178,9 @@ const Account = () => {
             Location
           </span>
           <span>
-            {data?.address?.city && data?.address?.country
-              ? `${data.address.city}, ${data.address.country}`
+            {usersState?.data?.address?.city &&
+            usersState?.data?.address?.country
+              ? `${usersState?.data?.address.city}, ${usersState?.data?.address.country}`
               : "---"}
           </span>
         </div>
@@ -149,7 +190,7 @@ const Account = () => {
           <span className="w-max text-h6 font-medium border-b-2 border-b-black dark:border-b-slate-600">
             Job
           </span>
-          <span>{data?.job ? data.job : "---"}</span>
+          <span>{usersState?.data?.job ? usersState?.data?.job : "---"}</span>
         </div>
 
         {/* skills */}
@@ -157,7 +198,11 @@ const Account = () => {
           <span className="w-max text-h6 font-medium border-b-2 border-b-black dark:border-b-slate-600">
             Skills
           </span>
-          <span>{data?.skills?.length ? data.skills.join(", ") : "---"}</span>
+          <span>
+            {usersState?.data?.skills?.length
+              ? usersState?.data?.skills.join(", ")
+              : "---"}
+          </span>
         </div>
 
         {/* update account button */}

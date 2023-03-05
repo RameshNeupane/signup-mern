@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 
 import Eye from "../icons/Eye";
 import EyeSlash from "../icons/EyeSlash";
@@ -6,11 +6,18 @@ import EyeSlash from "../icons/EyeSlash";
 type InputPasswordProps = {
   name: string;
   placeholder: string;
+  value: string;
+  setValue: Dispatch<SetStateAction<string>>;
 };
 
-const InputPassword: React.FC<InputPasswordProps> = ({ name, placeholder }) => {
+const InputPassword: React.FC<InputPasswordProps> = ({
+  name,
+  placeholder,
+  value,
+  setValue,
+}) => {
   const [passwordType, setPasswordType] = useState("password");
-  const [passwordInput, setPasswordInput] = useState("");
+  // const [passwordInput, setPasswordInput] = useState("");
 
   const showHidePassword = () => {
     if (passwordType === "password") {
@@ -30,13 +37,13 @@ const InputPassword: React.FC<InputPasswordProps> = ({ name, placeholder }) => {
           type={passwordType}
           name={name}
           id={name}
-          value={passwordInput}
-          onChange={(event) => setPasswordInput(event.target.value)}
+          value={value}
+          onChange={(event) => setValue(event.target.value)}
           className="w-full dark:bg-slate-600 rounded-md h-12 outline-none border-2 border-transparent focus-within:border-white pl-2 text-base"
           placeholder={placeholder}
         />
         {/* show/hide password input */}
-        {passwordInput && (
+        {value && (
           <div
             className=" w-10 h-10 p-2 absolute right-1 top-1/2 -translate-y-1/2 flex items-center justify-center rounded-full dark:hover:bg-slate-700 hover:cursor-pointer"
             onClick={showHidePassword}
