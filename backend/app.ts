@@ -6,6 +6,7 @@ import bodyParser from "body-parser";
 import userRouter from "@routes/user";
 import configureDB from "@config/database";
 import { PORT } from "@config/environment";
+import authRouter from "@routes/google-auth";
 
 // express app instance
 const app = express();
@@ -15,6 +16,7 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false })); // parse application/x-www-form-urlencoded
 app.use(bodyParser.json()); // parse application/json
 app.use("/user", userRouter);
+app.use("/auth", authRouter);
 
 // database connection
 configureDB();
