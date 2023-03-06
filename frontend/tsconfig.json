@@ -22,6 +22,7 @@
       "@assets/*": ["src/assets/*"],
       "@components/*": ["src/components/*"],
       "@config/*": ["src/config/*"],
+      "@form-validation/*": ["src/form-validation/*"],
       "@pages/*": ["src/pages/*"],
       "@redux/*": ["src/redux/*"],
       "@types/*": ["src/types/*"]

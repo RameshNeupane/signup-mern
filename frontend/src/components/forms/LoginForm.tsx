@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { useGoogleLogin } from "@react-oauth/google";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 import Info from "../icons/Info";
 import Button from "../form-inputs/Button";
@@ -7,36 +9,50 @@ import LinkHover from "../links/LinkHover";
 import InputText from "../form-inputs/InputText";
 import GoogleButton from "../buttons/GoogleButton";
 import RememberMe from "../form-inputs/RememberMe";
-import { data } from "@assets/data/account-detail";
 import InputPassword from "../form-inputs/InputPassword";
-import { fetchAllUsers, loginUser } from "@redux/user/action";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@redux/root-reducer";
-import { actionType, usersStateType } from "../../types/user";
-// import { myDispatchType } from "@types/dispatch";
+import { loginSchema } from "@form-validation/login-schema";
+import { useAppDispatch, useAppSelector } from "@redux/hooks";
+import ErrorInputMessage from "@components/ErrorInputMessage";
+import { googleLoginUser, loginUser } from "@redux/user/action";
+
+type loginInfo = {
+  username: string;
+  password: string;
+  rememmber: boolean;
+};
 
 const LoginForm = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const usersState = useSelector<RootState, usersStateType>(
-    (state) => state.users
-  );
+  const dispatch = useAppDispatch();
+  const usersState = useAppSelector((state) => state.users);
 
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<loginInfo>({
+    resolver: yupResolver(loginSchema),
+  });
 
-  const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
-    if (username && password) {
-      dispatch(loginUser({ username, password }));
-      navigate(`/account/${username}`);
-    }
+  const onSubmit = (data: loginInfo) => {
+    // event.preventDefault();
+    // if (username && password) {
+    //   dispatch(loginUser({ username, password }));
+    //   navigate(`/account/${username}`);
+    // }
+    console.log(data);
+    navigate(`/account/${data?.username}`);
   };
 
-  // useEffect(() => {
-  //   if (usersState.status === "succeeded") {
-  //   }
-  // }, [usersState.status, navigate]);
+  console.log(errors);
+  // google login
+  const googleLogin = useGoogleLogin({
+    onSuccess: async ({ code }) => {
+      console.log(code);
+      dispatch(googleLoginUser(code));
+    },
+    flow: "auth-code",
+  });
 
   return (
     <div className=" flex flex-col items-center gap-8">
@@ -51,23 +67,37 @@ const LoginForm = () => {
       <form
         method="post"
         className="w-full flex flex-col gap-4"
-        onSubmit={handleSubmit}
+        onSubmit={handleSubmit(onSubmit)}
       >
-        <InputText
-          name="username"
-          placeholder="aaryn098"
-          value={username}
-          setValue={setUsername}
-        />
-        <InputPassword
-          name="password"
-          placeholder="********"
-          value={password}
-          setValue={setPassword}
-        />
+        {/* username */}
+        <div>
+          <InputText
+            label="username"
+            name="username"
+            placeholder="aaryn098"
+            control={control}
+          />
+          {errors?.username ? (
+            <ErrorInputMessage message={errors.username.message as string} />
+          ) : null}
+        </div>
+
+        {/* password */}
+        <div>
+          <InputPassword
+            label="password"
+            name="password"
+            placeholder="********"
+            control={control}
+          />
+          {errors?.password ? (
+            <ErrorInputMessage message={errors.password.message as string} />
+          ) : null}
+        </div>
+
         <div className="w-full flex flex-col gap-2">
           <div className=" flex items-center justify-between">
-            <RememberMe />
+            <RememberMe name="remember" control={control} />
             <LinkHover path="/verify-email">Forgot Password?</LinkHover>
           </div>
           <Button>Login</Button>
@@ -79,7 +109,7 @@ const LoginForm = () => {
           <span className="block text-h6 font-normal">OR</span>
           <hr className=" block w-full h-1 dark:bg-slate-600 bg-black border dark:border-slate-600 border-black rounded-full" />
         </div>
-        <GoogleButton />
+        <GoogleButton onClick={googleLogin} />
       </div>
     </div>
   );

@@ -1,20 +1,28 @@
-import React, { useState } from "react";
+import React from "react";
+import { Control, Controller } from "react-hook-form";
 
-const RememberMe = () => {
-  const [checked, setChecked] = useState(false);
+type RememberMeProps = {
+  name: string;
+  control: Control<any>;
+};
 
+const RememberMe: React.FC<RememberMeProps> = ({ name, control }) => {
   return (
     <div className="flex gap-1 items-center justify-start w-max">
-      <input
-        type="checkbox"
-        name="remember"
-        id="remember"
-        value=""
-        checked={checked}
-        onChange={(e) => setChecked((prev) => !prev)}
-        className=" w-5 h-5 rounded-sm border-none dark:bg-cyan-600"
+      <Controller
+        name={name}
+        control={control}
+        render={({ field }) => (
+          <input
+            type="checkbox"
+            name={name}
+            id={name}
+            onChange={field.onChange}
+            className=" w-5 h-5 rounded-sm border-none dark:bg-cyan-600"
+          />
+        )}
       />
-      <label htmlFor="remember">Remember Me</label>
+      <label htmlFor={name}>Remember Me</label>
     </div>
   );
 };

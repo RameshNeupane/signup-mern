@@ -1,15 +1,31 @@
-import { FormEvent, useState } from "react";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 import Button from "../form-inputs/Button";
 import LinkHover from "../links/LinkHover";
 import InputEmail from "../form-inputs/InputEmail";
 import { data } from "@assets/data/account-detail";
+import ErrorInputMessage from "@components/ErrorInputMessage";
+import { verifyEmailSchema } from "@form-validation/verify-email-schema";
+
+type verifyEmailInfo = {
+  email: string;
+};
 
 const VerifyEmailForm = () => {
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<verifyEmailInfo>({
+    resolver: yupResolver(verifyEmailSchema),
+  });
+
   const [showInfo, setShowInfo] = useState(false);
 
-  const handleSubmit = (event: FormEvent) => {
-    event.preventDefault();
+  const onSubmit = (data: verifyEmailInfo) => {
+    console.log(data);
     setShowInfo(true);
   };
 
@@ -31,9 +47,19 @@ const VerifyEmailForm = () => {
           action="#"
           method="post"
           className="w-full flex flex-col gap-4"
-          onSubmit={handleSubmit}
+          onSubmit={handleSubmit(onSubmit)}
         >
-          <InputEmail name="email" placeholder="test@example.com" />
+          <div>
+            <InputEmail
+              label="email"
+              name="email"
+              placeholder="test@example.com"
+              control={control}
+            />
+            {errors?.email ? (
+              <ErrorInputMessage message={errors.email.message as string} />
+            ) : null}
+          </div>
           <Button>Submit</Button>
         </form>
       </div>

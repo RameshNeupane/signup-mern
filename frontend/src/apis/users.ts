@@ -27,3 +27,17 @@ export const loginUserApi = async (cred: loginData) => {
     handleError(error as AxiosError);
   }
 };
+
+// google login
+export const googleLoginUserApi = async (code: string) => {
+  try {
+    console.log("async api");
+    const response = await axiosInstance.post("/auth/google", { code });
+    console.log(response.data);
+    const data = await response.data;
+    return data;
+  } catch (error) {
+    console.log("error erororroro");
+    handleError(error as AxiosError);
+  }
+};

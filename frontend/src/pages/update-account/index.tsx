@@ -9,7 +9,8 @@ const UpdateAccount = () => {
   }, []);
   return (
     <FormLayout>
-      <UpdateAccountForm />
+      {/* <UpdateAccountForm /> */}
+      Update Account
     </FormLayout>
   );
 };

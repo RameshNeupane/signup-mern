@@ -1,20 +1,36 @@
-import React from "react";
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 import Info from "../icons/Info";
 import Button from "../form-inputs/Button";
 import LinkHover from "../links/LinkHover";
 import InputText from "../form-inputs/InputText";
 import InputEmail from "../form-inputs/InputEmail";
-import RememberMe from "../form-inputs/RememberMe";
-import GoogleButton from "../buttons/GoogleButton";
 import InputPassword from "../form-inputs/InputPassword";
+import ErrorInputMessage from "@components/ErrorInputMessage";
+import { registerSchema } from "@form-validation/register-schema";
+
+type registerInfo = {
+  fullname: string;
+  username: string;
+  email: string;
+  password: string;
+};
 
 const RegisterForm = () => {
   const navigate = useNavigate();
 
-  const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<registerInfo>({
+    resolver: yupResolver(registerSchema),
+  });
+
+  const handleRegisterSubmit = (data: registerInfo) => {
+    console.log(data);
     navigate("/verify-otp");
   };
 
@@ -31,25 +47,61 @@ const RegisterForm = () => {
       <form
         method="post"
         className="w-full flex flex-col gap-4"
-        onSubmit={handleSubmit}
+        onSubmit={handleSubmit(handleRegisterSubmit)}
       >
-        <InputText name="fullname" placeholder="Ramesh Neupane" />
-        <InputText name="username" placeholder="aaryn098" />
-        <InputEmail name="email" placeholder="test@example.com" />
-        <InputPassword name="password" placeholder="********" />
-        <div className="w-full flex flex-col gap-2">
-          <RememberMe />
-          <Button>Register</Button>
+        {/* fullname */}
+        <div>
+          <InputText
+            label="fullname"
+            name="fullname"
+            placeholder="Ramesh Neupane"
+            control={control}
+          />
+          {errors?.fullname ? (
+            <ErrorInputMessage message={errors.fullname.message as string} />
+          ) : null}
         </div>
+
+        {/* username */}
+        <div>
+          <InputText
+            label="username"
+            name="username"
+            placeholder="aaryn098"
+            control={control}
+          />
+          {errors?.username ? (
+            <ErrorInputMessage message={errors.username.message as string} />
+          ) : null}
+        </div>
+
+        {/* email */}
+        <div>
+          <InputEmail
+            label="email"
+            name="email"
+            placeholder="test@example.com"
+            control={control}
+          />
+          {errors?.email ? (
+            <ErrorInputMessage message={errors.email.message as string} />
+          ) : null}
+        </div>
+
+        {/* password */}
+        <div>
+          <InputPassword
+            label="password"
+            name="password"
+            placeholder="********"
+            control={control}
+          />
+          {errors?.password ? (
+            <ErrorInputMessage message={errors.password.message as string} />
+          ) : null}
+        </div>
+        <Button>Register</Button>
       </form>
-      <div className="w-full flex flex-col items-center gap-2">
-        <div className="flex items-center justify-center gap-1 w-full">
-          <hr className=" block w-full h-1 dark:bg-slate-600 bg-black border dark:border-slate-600 border-black rounded-full" />
-          <span className="block text-h6 font-normal">OR</span>
-          <hr className=" block w-full h-1 dark:bg-slate-600 bg-black border dark:border-slate-600 border-black rounded-full" />
-        </div>
-        <GoogleButton />
-      </div>
     </div>
   );
 };
