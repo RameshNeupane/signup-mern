@@ -1,4 +1,8 @@
-import { fetchAllUsersApi, loginUserApi } from "@apis/users";
+import {
+  fetchAllUsersApi,
+  googleLoginUserApi,
+  loginUserApi,
+} from "@apis/users";
 import { AxiosError } from "axios";
 import { myDispatchType } from "../../types/dispatch";
 import { actionType, errorType, loginData, User } from "../../types/user";
@@ -65,6 +69,41 @@ export const loginUser =
     try {
       const user = (await loginUserApi(data)) as User;
       dispatch(loginSucceeded(user));
+    } catch (error: any) {
+      console.log("error error error", error);
+      dispatch(loginFailed(error));
+    }
+  };
+
+/** GOOGLE LOGIN */
+const googleLoginRequested = (): actionType => {
+  return {
+    type: actions.GOOGLE_LOGIN_REQUESTED,
+  };
+};
+
+const googleLoginSucceeded = (data: any) => {
+  return {
+    type: actions.GOOGLE_LOGIN_SUCCEEDED,
+    payload: data,
+  };
+};
+
+const googleLoginFailed = (data: errorType): actionType => {
+  return {
+    type: actions.GOOGLE_LOGIN_FAILED,
+    payload: data,
+  };
+};
+
+// google login async
+export const googleLoginUser =
+  (code: string) => async (dispatch: myDispatchType) => {
+    dispatch(loginRequested());
+    try {
+      console.log("dispatch login api");
+      const tokens = (await googleLoginUserApi(code)) as any;
+      dispatch(googleLoginSucceeded(tokens));
     } catch (error: any) {
       console.log("error error error", error);
       dispatch(loginFailed(error));
